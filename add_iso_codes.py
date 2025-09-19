@@ -1,26 +1,24 @@
-# Add ISO to csv file
-# import pandas as pd
-# import pycountry
-
-# # Read the CSV in the same folder
-# df = pd.read_csv("Life-Expectancy-Data-Updated.csv")
-
-# def to_iso3(name):
-#     try:
-#         return pycountry.countries.lookup(name).alpha_3
-#     except LookupError:
-#         return None
-
-# df["ISO3"] = df["Country"].apply(to_iso3)
-
-# # Save a new file in the same folder (keeps original intact)
-# df.to_csv("Life-Expectancy-Data-Updated-with-ISO.csv", index=False)
-# print("Done: Life-Expectancy-Data-Updated-with-ISO.csv created.")
-
-
-
-# Check which ones ISO are empty
+## Add ISO-3 to csv file
 import pandas as pd
+import pycountry
+
+# Read the CSV in the same folder
+df = pd.read_csv("Life-Expectancy-Data-Updated.csv")
+
+def to_iso3(name):
+    try:
+        return pycountry.countries.lookup(name).alpha_3
+    except LookupError:
+        return None
+
+df["ISO3"] = df["Country"].apply(to_iso3)
+
+# Save a new file in the same folder (keeps original intact)
+df.to_csv("Life-Expectancy-Data-Updated-with-ISO.csv", index=False)
+print("Done: Life-Expectancy-Data-Updated-with-ISO.csv created.")
+
+
+## Check which country's ISO are empty
 df = pd.read_csv("Life-Expectancy-Data-Updated-with-ISO.csv")
 
 # Show all rows where ISO3 is missing
@@ -28,10 +26,7 @@ missing = df[df["ISO3"].isna()]
 print(missing[["Country"]].drop_duplicates())
 
 
-
-# Script to add the ISOs for empty country
-import pandas as pd
-
+## Script to add the ISOs for empty country
 fixes = {
     "Turkiye": "TUR",
     "Bahamas, The": "BHS",

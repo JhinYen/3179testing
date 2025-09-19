@@ -18,7 +18,7 @@
             "lookup": "properties.ISO_A3",
             "from": {
                 "data": {
-                    "url": "https://raw.githubusercontent.com/JhinYen/3179testing/main/Life-Expectancy-Data-Updated-with-ISO.csv",
+                    "url": "https://raw.githubusercontent.com/JhinYen/3179testing/refs/heads/main/DV2/Life-Expectancy-Data-Updated-with-ISO.csv",
                     "format": {
                         "type": "csv"
                     }

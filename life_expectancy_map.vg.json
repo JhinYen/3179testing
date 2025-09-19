@@ -1,0 +1,106 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 500,
+    "title": "World Life Expectancy (2014)",
+    "projection": {
+        "type": "naturalEarth1"
+    },
+    "data": {
+        "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2.8.0/data/world-110m.json",
+        "format": {
+            "type": "topojson",
+            "feature": "countries"
+        }
+    },
+    "transform": [
+        {
+            "lookup": "properties.iso_a3",
+            "from": {
+                "data": {
+                    "url": "Life-Expectancy-Data-Updated-with-ISO.csv",
+                    "format": {
+                        "type": "csv"
+                    },
+                    "transform": [
+                        {
+                            "filter": "datum.Year == 2014"
+                        }
+                    ]
+                },
+                "key": "ISO3",
+                "fields": [
+                    "Country",
+                    "Region",
+                    "Year",
+                    "Life_expectancy",
+                    "GDP_per_capita",
+                    "Economy_status_Developed",
+                    "Economy_status_Developing"
+                ]
+            }
+        },
+        {
+            "filter": "isValid(datum.Life_expectancy)"
+        },
+        {
+            "calculate": "datum.Economy_status_Developed == 1 ? 'Developed' : 'Developing'",
+            "as": "Status"
+        }
+    ],
+    "mark": {
+        "type": "geoshape",
+        "stroke": "white",
+        "strokeWidth": 0.5
+    },
+    "encoding": {
+        "color": {
+            "field": "Life_expectancy",
+            "type": "quantitative",
+            "scale": {
+                "type": "sequential",
+                "scheme": "redblue",
+                "reverse": true,
+                "domainMid": 70
+            },
+            "legend": {
+                "title": "Life Expectancy (years)",
+                "direction": "horizontal",
+                "orient": "bottom",
+                "gradientLength": 300
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Country",
+                "type": "nominal"
+            },
+            {
+                "field": "Life_expectancy",
+                "type": "quantitative",
+                "format": ".1f"
+            },
+            {
+                "field": "Status",
+                "type": "nominal",
+                "title": "Development Status"
+            },
+            {
+                "field": "GDP_per_capita",
+                "type": "quantitative",
+                "title": "GDP per capita",
+                "format": "$.0f"
+            },
+            {
+                "field": "Region",
+                "type": "nominal"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": null
+        },
+        "background": "transparent"
+    }
+}

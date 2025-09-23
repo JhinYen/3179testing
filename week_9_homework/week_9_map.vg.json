@@ -23,6 +23,7 @@
             },
             "mark": {
                 "type": "geoshape",
+                "clip": true,
                 "stroke": "#cccccc",
                 "strokeWidth": 0.5,
                 "fill": "#cfe8ff" 
@@ -41,14 +42,14 @@
                     "lookup": "properties.ISO_A3",
                     "from": {
                         "data": {
-                            "url": "https://raw.githubusercontent.com/JhinYen/3179testing/refs/heads/main/DV2/Life-Expectancy-Data-Updated-with-ISO.csv",
+                            "url": "https://raw.githubusercontent.com/JhinYen/3179testing/refs/heads/main/week_9_homework/life_expectancy_avg_with_ISO.csv",
                             "format": {
                                 "type": "csv"
                             }
                         },
                         "key": "ISO3",
                         "fields": [
-                            "Life_expectancy",
+                            "avg_life_exp",
                             "Country"
                         ]
                     }
@@ -59,9 +60,9 @@
             },
             "encoding": {
                 "color": {
-                    "field": "Life_expectancy",
+                    "field": "avg_life_exp",
                     "type": "quantitative",
-                    "title": "Life Expectancy (years)",
+                    "title": "Average Life Expectancy (years)",
                     "scale": {
                         "scheme": "blues"
                     }
@@ -73,10 +74,10 @@
                         "title": "Country"
                     },
                     {
-                        "field": "Life_expectancy",
+                        "field": "avg_life_exp",
                         "type": "quantitative",
                         "format": ".1f",
-                        "title": "Life Expectancy"
+                        "title": "Average Life Expectancy"
                     }
                 ]
             }

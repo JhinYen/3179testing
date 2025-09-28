@@ -42,7 +42,7 @@
                     "lookup": "properties.ISO_A3",
                     "from": {
                         "data": {
-                            "url": "https://raw.githubusercontent.com/JhinYen/3179testing/refs/heads/main/week_9_homework/life_expectancy_avg_with_ISO.csv",
+                            "url": "https://raw.githubusercontent.com/JhinYen/3179testing/refs/heads/main/week_10_homework/life_expectancy_avg_with_ISO.csv",
                             "format": {
                                 "type": "csv"
                             }

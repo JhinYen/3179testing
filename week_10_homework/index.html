@@ -3,21 +3,60 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Global Life Expectancy Map</title>
+    <title>Global Life Expectancy Map + Scatter</title>
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+    <style>
+        body {
+            margin: 0;
+            background: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #222;
+        }
+
+        /* shared look */
+        .card {
+            max-width: 960px;
+            background: #e6f2ff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        /* map stays centred if you like */
+        #map.card {
+            margin: 40px auto;
+        }
+
+        /* scatter pushed left like the map itself */
+        .card--scatter {
+            background: #fff8ec;
+            margin: 40px 0 40px 40px;
+            /* top | right | bottom | left */
+            max-width: 960px;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #444;
+            margin-top: 8px;
+            text-align: left;
+            /* keep hint text left as well */
+        }
+    </style>
 </head>
 
-<body style="margin:0; background:#ffffff;">
-    <div id="map" style="
-         max-width:960px;
-         margin:40px auto;              /* horizontal centre + some top/bottom margin */
-         background:#e6f2ff;            /* light-blue just behind the chart */
-         padding:20px;
-         border-radius:12px;
-         box-shadow:0 2px 6px rgba(0,0,0,0.15);
-    "></div>
+<body>
+    <div id="map" class="card"></div>
+
+    <div class="card card--scatter">
+        <div id="week_10_vis"></div>
+        <div class="hint">
+            Use the slider embedded in the visualization to change year (2000–2015).
+        </div>
+    </div>
 
     <script src="vega_lite_vis.js"></script>
 </body>

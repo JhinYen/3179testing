@@ -1,0 +1,279 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Scatter: GDP per capita vs Life expectancy with year slider, tooltip, and annotation showing global average life expectancy for selected year.",
+    "width": 900,
+    "height": 520,
+    "data": {
+        "url": "https://raw.githubusercontent.com/JhinYen/3179testing/refs/heads/main/week_10_homework/Life-Expectancy-Data-Updated-with-ISO.csv"
+    },
+    "transform": [
+        {
+            "calculate": "datum.Population_mln == null ? null : datum.Population_mln",
+            "as": "Population_mln_clean"
+        }
+    ],
+    "params": [
+        {
+            "name": "year_select",
+            "value": 2015,
+            "bind": {
+                "input": "range",
+                "min": 2000,
+                "max": 2015,
+                "step": 1
+            }
+        }
+    ],
+    "layer": [
+        {
+            "transform": [
+                {
+                    "filter": "datum.Year == year_select"
+                }
+            ],
+            "mark": {
+                "type": "point",
+                "tooltip": true,
+                "opacity": 0.9,
+                "stroke": "#111",
+                "strokeWidth": 0.3
+            },
+            "encoding": {
+                "x": {
+                    "field": "GDP_per_capita",
+                    "type": "quantitative",
+                    "title": "GDP per capita (US$)",
+                    "scale": {
+                        "zero": false
+                    },
+                    "axis": {
+                        "format": ",",
+                        "labelExpr": "datum.label"
+                    }
+                },
+                "y": {
+                    "field": "Life_expectancy",
+                    "type": "quantitative",
+                    "title": "Life expectancy (years)",
+                    "scale": {
+                        "zero": false
+                    }
+                },
+                "size": {
+                    "field": "Population_mln_clean",
+                    "type": "quantitative",
+                    "title": "Population (millions)",
+                    "scale": {
+                        "range": [
+                            20,
+                            180
+                        ],
+                        "nice": true
+                    }
+                },
+                "color": {
+                    "field": "Region",
+                    "type": "nominal",
+                    "title": "Region",
+                    "legend": {
+                        "orient": "right",
+                        "direction": "vertical"
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "Country",
+                        "type": "nominal",
+                        "title": "Country"
+                    },
+                    {
+                        "field": "Region",
+                        "type": "nominal",
+                        "title": "Region"
+                    },
+                    {
+                        "field": "Year",
+                        "type": "temporal",
+                        "title": "Year",
+                        "timeUnit": "year"
+                    },
+                    {
+                        "field": "Life_expectancy",
+                        "type": "quantitative",
+                        "title": "Life expectancy (yrs)",
+                        "format": ".1f"
+                    },
+                    {
+                        "field": "GDP_per_capita",
+                        "type": "quantitative",
+                        "title": "GDP per capita (US$)",
+                        "format": ","
+                    },
+                    {
+                        "field": "Population_mln_clean",
+                        "type": "quantitative",
+                        "title": "Population (mln)",
+                        "format": ".1f"
+                    },
+                    {
+                        "field": "Infant_deaths",
+                        "type": "quantitative",
+                        "title": "Infant deaths",
+                        "format": ","
+                    },
+                    {
+                        "field": "Schooling",
+                        "type": "quantitative",
+                        "title": "Schooling (yrs)",
+                        "format": ".1f"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "global_mean_layer",
+            "transform": [
+                {
+                    "filter": "datum.Year == year_select"
+                },
+                {
+                    "aggregate": [
+                        {
+                            "op": "mean",
+                            "field": "Life_expectancy",
+                            "as": "mean_life"
+                        }
+                    ]
+                }
+            ],
+            "mark": {
+                "type": "rule",
+                "color": "#444",
+                "strokeDash": [
+                    4,
+                    4
+                ],
+                "opacity": 0.9
+            },
+            "encoding": {
+                "y": {
+                    "field": "mean_life",
+                    "type": "quantitative"
+                }
+            }
+        },
+        {
+            "transform": [
+                {
+                    "filter": "datum.Year == year_select"
+                },
+                {
+                    "aggregate": [
+                        {
+                            "op": "mean",
+                            "field": "Life_expectancy",
+                            "as": "mean_life"
+                        }
+                    ]
+                },
+                {
+                    "calculate": "format(datum.mean_life, '.1f')",
+                    "as": "mean_label"
+                }
+            ],
+            "mark": {
+                "type": "text",
+                "align": "right",
+                "baseline": "bottom",
+                "dx": -6,
+                "dy": -6,
+                "fontWeight": "bold",
+                "fontSize": 12,
+                "angle": 0,
+                "fill": "#222",
+                "opacity": 0.95
+            },
+            "encoding": {
+                "x": {
+                    "value": 880
+                },
+                "y": {
+                    "field": "mean_life",
+                    "type": "quantitative"
+                },
+                "text": {
+                    "field": "mean_label",
+                    "type": "nominal",
+                    "title": null
+                }
+            }
+        },
+        {
+            "transform": [
+                {
+                    "filter": "datum.Year == year_select"
+                },
+                {
+                    "aggregate": [
+                        {
+                            "op": "mean",
+                            "field": "Life_expectancy",
+                            "as": "mean_life"
+                        }
+                    ]
+                },
+                {
+                    "calculate": "\"Global average: \" + format(datum.mean_life, '.1f') + \" yrs\"",
+                    "as": "anno"
+                }
+            ],
+            "mark": {
+                "type": "text",
+                "align": "right",
+                "baseline": "bottom",
+                "dx": -6,
+                "dy": -22,
+                "fontWeight": "normal",
+                "fontSize": 12,
+                "fill": "#222",
+                "opacity": 0.9
+            },
+            "encoding": {
+                "x": {
+                    "value": 880
+                },
+                "y": {
+                    "field": "mean_life",
+                    "type": "quantitative"
+                },
+                "text": {
+                    "field": "anno",
+                    "type": "nominal"
+                }
+            }
+        }
+    ],
+    "config": {
+        "view": {
+            "continuousWidth": 900,
+            "continuousHeight": 520
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 13
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 13
+        },
+        "title": {
+            "fontSize": 16,
+            "anchor": "start"
+        }
+    },
+    "title": {
+        "text": "Life expectancy vs GDP per capita — use the slider below to change year",
+        "subtitle": "Point size = population (millions). Dashed line = global average life expectancy for chosen year.",
+        "anchor": "start"
+    }
+}

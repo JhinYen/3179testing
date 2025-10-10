@@ -14,7 +14,8 @@
                 "input": "range",
                 "min": 2000,
                 "max": 2015,
-                "step": 1
+                "step": 1,
+                "name": "Select year"
             }
         }
     ],
@@ -161,7 +162,7 @@
                     ]
                 },
                 {
-                    "calculate": "\"Global avg: \" + format(datum.mean_life, '.1f') + \" yrs\"",
+                    "calculate": "\"Global average: \" + format(datum.mean_life, '.1f') + \" years\"",
                     "as": "label"
                 }
             ],

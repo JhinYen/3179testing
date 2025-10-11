@@ -1,0 +1,86 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Scatter plot of Fertility vs Life Expectancy, colored by continent derived from LocID.",
+    "data": {
+        "url": "Demographic_Indicators_2000_2015.csv"
+    },
+    "width": 420,
+    "height": 420,
+    "params": [
+        {
+            "name": "Year",
+            "value": 2000,
+            "bind": {
+                "input": "range",
+                "min": 2000,
+                "max": 2015,
+                "step": 1,
+                "name": "Select year: "
+            }
+        }
+    ],
+    "transform": [
+        {
+            "filter": "datum.Time == Year"
+        },
+        {
+            "calculate": "datum.LocID <= 900 ? (datum.LocID < 300 ? 'Africa' : datum.LocID < 400 ? 'Asia' : datum.LocID < 500 ? 'Europe' : datum.LocID < 600 ? 'Latin America' : 'Oceania') : 'Other'",
+            "as": "Continent"
+        }
+    ],
+    "mark": {
+        "type": "circle",
+        "opacity": 0.8
+    },
+    "encoding": {
+        "x": {
+            "field": "TFR",
+            "type": "quantitative",
+            "title": "Total Fertility Rate (births per woman)",
+            "scale": {
+                "type": "log",
+                "domain": [
+                    0.7,
+                    9
+                ]
+            }
+        },
+        "y": {
+            "field": "LEx",
+            "type": "quantitative",
+            "title": "Life Expectancy at Birth (years)",
+            "scale": {
+                "domain": [
+                    30,
+                    90
+                ] 
+            }
+        },
+        "color": {
+            "field": "Continent",
+            "type": "nominal",
+            "title": "Continent"
+        },
+        "tooltip": [
+            {
+                "field": "Location",
+                "type": "nominal"
+            },
+            {
+                "field": "TFR",
+                "type": "quantitative"
+            },
+            {
+                "field": "LEx",
+                "type": "quantitative"
+            },
+            {
+                "field": "Continent",
+                "type": "nominal"
+            }
+        ]
+    },
+    "config": {
+        "background": "white"
+    }
+}

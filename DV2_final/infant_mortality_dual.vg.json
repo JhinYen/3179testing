@@ -1,0 +1,144 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Infant Deaths vs Life Expectancy (Top 20 by Population, 2015)",
+        "font": "Poppins",
+        "fontSize": 16
+    },
+    "width": 900,
+    "height": 430,
+    "data": {
+        "url": "https://raw.githubusercontent.com/JhinYen/3179testing/refs/heads/main/DV2/Life-Expectancy-Data-Updated-with-ISO.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "transform": [
+        {
+            "filter": "datum.Year == 2015"
+        },
+        {
+            "window": [
+                {
+                    "op": "rank",
+                    "as": "pop_rank"
+                }
+            ],
+            "sort": [
+                {
+                    "field": "Population_mln",
+                    "order": "descending"
+                }
+            ]
+        },
+        {
+            "filter": "datum.pop_rank <= 20"
+        },
+        {
+            "joinaggregate": [
+                {
+                    "op": "min",
+                    "field": "Life_expectancy",
+                    "as": "minLE"
+                },
+                {
+                    "op": "max",
+                    "field": "Life_expectancy",
+                    "as": "maxLE"
+                },
+                {
+                    "op": "max",
+                    "field": "Infant_deaths",
+                    "as": "maxInf"
+                }
+            ]
+        },
+        {
+            "calculate": "(datum.Life_expectancy - datum.minLE) / (datum.maxLE - datum.minLE) * datum.maxInf",
+            "as": "Life_expectancy_scaled"
+        }
+    ],
+    "layer": [
+        {
+            "mark": {
+                "type": "bar",
+                "cornerRadius": 3
+            },
+            "encoding": {
+                "x": {
+                    "field": "Country",
+                    "type": "nominal",
+                    "sort": "-y",
+                    "axis": {
+                        "labelAngle": -40
+                    }
+                },
+                "y": {
+                    "field": "Infant_deaths",
+                    "type": "quantitative",
+                    "title": "Infant Deaths (count)"
+                },
+                "color": {
+                    "value": "#ffa94d"
+                },
+                "tooltip": [
+                    {
+                        "field": "Country",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "Infant_deaths",
+                        "type": "quantitative",
+                        "title": "Infant deaths",
+                        "format": ".0f"
+                    },
+                    {
+                        "field": "Life_expectancy",
+                        "type": "quantitative",
+                        "title": "Life expectancy (yrs)",
+                        "format": ".1f"
+                    }
+                ]
+            }
+        },
+        {
+            "mark": {
+                "type": "line",
+                "point": true,
+                "strokeWidth": 2
+            },
+            "encoding": {
+                "x": {
+                    "field": "Country",
+                    "type": "nominal",
+                    "sort": "-y"
+                },
+                "y": {
+                    "field": "Life_expectancy_scaled",
+                    "type": "quantitative",
+                    "axis": null
+                },
+                "color": {
+                    "value": "#2b8cbe"
+                },
+                "tooltip": [
+                    {
+                        "field": "Country",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "Life_expectancy",
+                        "type": "quantitative",
+                        "format": ".1f",
+                        "title": "Life expectancy (yrs)"
+                    }
+                ]
+            }
+        }
+    ],
+    "resolve": {
+        "scale": {
+            "y": "shared"
+        }
+    }
+}

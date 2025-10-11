@@ -1,0 +1,76 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Slope graph comparing male and female life expectancy by continent in 2015.",
+    "data": {
+        "url": "Demographic_Indicators_2000_2015.csv"
+    },
+    "transform": [
+        {
+            "filter": "datum.Time == 2015"
+        },
+        {
+            "calculate": "datum.LocID <= 900 ? (datum.LocID < 300 ? 'Africa' : datum.LocID < 400 ? 'Asia' : datum.LocID < 500 ? 'Europe' : datum.LocID < 600 ? 'Latin America' : 'Oceania') : 'Other'",
+            "as": "Continent"
+        },
+        {
+            "fold": [
+                "LExMale",
+                "LExFemale"
+            ],
+            "as": [
+                "Gender",
+                "LifeExpectancy"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Gender",
+            "type": "nominal",
+            "title": null,
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "LifeExpectancy",
+            "type": "quantitative",
+            "title": "Life Expectancy (years)"
+        },
+        "color": {
+            "field": "Continent",
+            "type": "nominal",
+            "title": "Continent"
+        },
+        "detail": {
+            "field": "LocID"
+        },
+        "tooltip": [
+            {
+                "field": "Location"
+            },
+            {
+                "field": "Continent"
+            },
+            {
+                "field": "Gender"
+            },
+            {
+                "field": "LifeExpectancy"
+            }
+        ]
+    },
+    "config": {
+        "background": "white",
+        "point": {
+            "size": 80
+        },
+        "axis": {
+            "grid": true
+        }
+    }
+}

@@ -1,0 +1,243 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Health Factors vs Life Expectancy (2015) — Small Multiples",
+        "font": "Poppins",
+        "fontSize": 16,
+        "anchor": "middle"
+    },
+    "data": {
+        "url": "https://raw.githubusercontent.com/JhinYen/3179testing/refs/heads/main/DV2/Life-Expectancy-Data-Updated-with-ISO.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "transform": [
+        {
+            "filter": "datum.Year == 2015"
+        }
+    ],
+    "hconcat": [
+        {
+            "width": 220,
+            "height": 220,
+            "mark": {
+                "type": "point",
+                "filled": true,
+                "opacity": 0.8
+            },
+            "encoding": {
+                "x": {
+                    "field": "Alcohol_consumption",
+                    "type": "quantitative",
+                    "title": "Alcohol Consumption"
+                },
+                "y": {
+                    "field": "Life_expectancy",
+                    "type": "quantitative",
+                    "title": "Life Expectancy (years)",
+                    "scale": {
+                        "domain": [
+                            40,
+                            90
+                        ]
+                    }
+                },
+                "color": {
+                    "field": "Region",
+                    "type": "nominal",
+                    "legend": null
+                },
+                "size": {
+                    "value": 40
+                },
+                "tooltip": [
+                    {
+                        "field": "Country",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "Alcohol_consumption",
+                        "type": "quantitative",
+                        "format": ".2f"
+                    },
+                    {
+                        "field": "Life_expectancy",
+                        "type": "quantitative",
+                        "format": ".1f"
+                    }
+                ]
+            }
+        },
+        {
+            "width": 220,
+            "height": 220,
+            "mark": {
+                "type": "point",
+                "filled": true,
+                "opacity": 0.8
+            },
+            "encoding": {
+                "x": {
+                    "field": "BMI",
+                    "type": "quantitative",
+                    "title": "BMI"
+                },
+                "y": {
+                    "field": "Life_expectancy",
+                    "type": "quantitative",
+                    "title": null,
+                    "scale": {
+                        "domain": [
+                            40,
+                            90
+                        ]
+                    }
+                },
+                "color": {
+                    "field": "Region",
+                    "type": "nominal",
+                    "legend": null
+                },
+                "size": {
+                    "value": 40
+                },
+                "tooltip": [
+                    {
+                        "field": "Country",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "BMI",
+                        "type": "quantitative",
+                        "format": ".2f"
+                    },
+                    {
+                        "field": "Life_expectancy",
+                        "type": "quantitative",
+                        "format": ".1f"
+                    }
+                ]
+            }
+        },
+        {
+            "width": 220,
+            "height": 220,
+            "mark": {
+                "type": "point",
+                "filled": true,
+                "opacity": 0.8
+            },
+            "encoding": {
+                "x": {
+                    "field": "Incidents_HIV",
+                    "type": "quantitative",
+                    "title": "HIV Incidents"
+                },
+                "y": {
+                    "field": "Life_expectancy",
+                    "type": "quantitative",
+                    "title": null,
+                    "scale": {
+                        "domain": [
+                            40,
+                            90
+                        ]
+                    }
+                },
+                "color": {
+                    "field": "Region",
+                    "type": "nominal",
+                    "legend": null
+                },
+                "size": {
+                    "value": 40
+                },
+                "tooltip": [
+                    {
+                        "field": "Country",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "Incidents_HIV",
+                        "type": "quantitative",
+                        "format": ".2f"
+                    },
+                    {
+                        "field": "Life_expectancy",
+                        "type": "quantitative",
+                        "format": ".1f"
+                    }
+                ]
+            }
+        },
+        {
+            "width": 220,
+            "height": 220,
+            "mark": {
+                "type": "point",
+                "filled": true,
+                "opacity": 0.8
+            },
+            "encoding": {
+                "x": {
+                    "field": "Schooling",
+                    "type": "quantitative",
+                    "title": "Schooling (years)"
+                },
+                "y": {
+                    "field": "Life_expectancy",
+                    "type": "quantitative",
+                    "title": null,
+                    "scale": {
+                        "domain": [
+                            40,
+                            90
+                        ]
+                    }
+                },
+                "color": {
+                    "field": "Region",
+                    "type": "nominal"
+                },
+                "size": {
+                    "value": 40
+                },
+                "tooltip": [
+                    {
+                        "field": "Country",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "Schooling",
+                        "type": "quantitative",
+                        "format": ".2f"
+                    },
+                    {
+                        "field": "Life_expectancy",
+                        "type": "quantitative",
+                        "format": ".1f"
+                    }
+                ]
+            }
+        }
+    ],
+    "config": {
+        "axisX": {
+            "labelFont": "Poppins",
+            "titleFont": "Poppins",
+            "titleFontSize": 12
+        },
+        "axisY": {
+            "titleFont": "Poppins",
+            "labelFont": "Poppins"
+        },
+        "legend": {
+            "titleFont": "Poppins",
+            "labelFont": "Poppins"
+        },
+        "title": {
+            "anchor": "middle"
+        }
+    }
+}

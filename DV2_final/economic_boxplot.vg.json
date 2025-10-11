@@ -1,0 +1,128 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Life Expectancy: Developed vs Developing (2015)",
+        "font": "Poppins",
+        "fontSize": 16
+    },
+    "width": 300,
+    "height": 420,
+    "background": "white",
+    "data": {
+        "url": "https://raw.githubusercontent.com/JhinYen/3179testing/refs/heads/main/DV2/Life-Expectancy-Data-Updated-with-ISO.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "transform": [
+        {
+            "filter": "datum.Year == 2015"
+        },
+        {
+            "calculate": "datum.Economy_status_Developed == '1' || datum.Economy_status_Developed == 'True' || datum.Economy_status_Developed == 1 ? 'Developed' : (datum.Economy_status_Developing == '1' || datum.Economy_status_Developing == 'True' || datum.Economy_status_Developing == 1 ? 'Developing' : 'Unknown')",
+            "as": "Economy_status"
+        },
+        {
+            "filter": "datum.Economy_status != 'Unknown'"
+        }
+    ],
+    "layer": [
+        {
+            "mark": {
+                "type": "boxplot",
+                "extent": "min-max",
+                "fillOpacity": 0.9,
+                "stroke": "black",
+                "strokeWidth": 1
+            },
+            "encoding": {
+                "x": {
+                    "field": "Economy_status",
+                    "type": "nominal",
+                    "title": "Economic Status",
+                    "sort": [
+                        "Developing",
+                        "Developed"
+                    ],
+                    "axis": {
+                        "labelAngle": 0,
+                        "labelPadding": 10
+                    }
+                },
+                "y": {
+                    "field": "Life_expectancy",
+                    "type": "quantitative",
+                    "title": "Life Expectancy (Years)",
+                    "scale": {
+                        "domain": [
+                            50,
+                            90
+                        ]
+                    }
+                },
+                "color": {
+                    "field": "Economy_status",
+                    "type": "nominal",
+                    "legend": null,
+                    "scale": {
+                        "domain": [
+                            "Developing",
+                            "Developed"
+                        ],
+                        "range": [
+                            "#e63946",
+                            "#1d3557"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "point",
+                "opacity": 0.5,
+                "size": 25,
+                "filled": true,
+                "jitter": {
+                    "width": 0.2
+                }
+            },
+            "encoding": {
+                "x": {
+                    "field": "Economy_status",
+                    "type": "nominal"
+                },
+                "y": {
+                    "field": "Life_expectancy",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "field": "Economy_status",
+                    "type": "nominal",
+                    "legend": null,
+                    "scale": {
+                        "domain": [
+                            "Developing",
+                            "Developed"
+                        ],
+                        "range": [
+                            "#e63946",
+                            "#1d3557"
+                        ]
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "Country",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "Life_expectancy",
+                        "type": "quantitative",
+                        "format": ".1f"
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,117 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Vaccination Coverage by Economy Status (2015)",
+        "font": "Poppins",
+        "fontSize": 16
+    },
+    "width": 420,
+    "height": 420,
+    "data": {
+        "url": "https://raw.githubusercontent.com/JhinYen/3179testing/refs/heads/main/DV2/Life-Expectancy-Data-Updated-with-ISO.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "transform": [
+        {
+            "filter": "datum.Year == 2015"
+        },
+        {
+            "calculate": "datum.Economy_status_Developed == 1 || datum.Economy_status_Developed == '1' || datum.Economy_status_Developed == 'True' ? 'Developed' : (datum.Economy_status_Developing == 1 || datum.Economy_status_Developing == '1' || datum.Economy_status_Developing == 'True' ? 'Developing' : 'Unknown')",
+            "as": "Economy_status"
+        },
+        {
+            "filter": "datum.Economy_status != 'Unknown'"
+        },
+        {
+            "fold": [
+                "Polio",
+                "Diphtheria",
+                "Hepatitis_B"
+            ],
+            "as": [
+                "Vaccine",
+                "Coverage"
+            ]
+        },
+        {
+            "calculate": "toNumber(datum.Coverage)",
+            "as": "Coverage_num"
+        },
+        {
+            "filter": "isFinite(datum.Coverage_num)"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 4
+    },
+    "encoding": {
+        "x": {
+            "field": "Vaccine",
+            "type": "nominal",
+            "title": "Vaccine Type",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "aggregate": "mean",
+            "field": "Coverage_num",
+            "type": "quantitative",
+            "title": "Mean Vaccination Coverage (%)",
+            "scale": {
+                "domain": [
+                    0,
+                    100
+                ]
+            }
+        },
+        "color": {
+            "field": "Economy_status",
+            "type": "nominal",
+            "title": "Economy Status",
+            "scale": {
+                "domain": [
+                    "Developing",
+                    "Developed"
+                ],
+                "range": [
+                    "#e63946",
+                    "#1d3557"
+                ]
+            }
+        },
+        "xOffset": {
+            "field": "Economy_status"
+        },
+        "tooltip": [
+            {
+                "field": "Vaccine",
+                "type": "nominal"
+            },
+            {
+                "field": "Economy_status",
+                "type": "nominal"
+            },
+            {
+                "aggregate": "mean",
+                "field": "Coverage_num",
+                "type": "quantitative",
+                "format": ".1f",
+                "title": "Mean coverage (%)"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFont": "Poppins",
+            "titleFont": "Poppins"
+        },
+        "legend": {
+            "labelFont": "Poppins",
+            "titleFont": "Poppins"
+        }
+    }
+}

@@ -93,7 +93,8 @@
             },
             {
                 "field": "Economy_status",
-                "type": "nominal"
+                "type": "nominal",
+                "title": "Economy Status"
             },
             {
                 "aggregate": "mean",

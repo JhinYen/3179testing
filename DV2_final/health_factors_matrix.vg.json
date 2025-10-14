@@ -59,12 +59,14 @@
                     {
                         "field": "Alcohol_consumption",
                         "type": "quantitative",
-                        "format": ".2f"
+                        "format": ".2f",
+                        "title": "Alcohol Consumption"
                     },
                     {
                         "field": "Life_expectancy",
                         "type": "quantitative",
-                        "format": ".1f"
+                        "format": ".1f",
+                        "title": "Life Expectancy"
                     }
                 ]
             }
@@ -115,7 +117,8 @@
                     {
                         "field": "Life_expectancy",
                         "type": "quantitative",
-                        "format": ".1f"
+                        "format": ".1f",
+                        "title": "Life Expectancy"
                     }
                 ]
             }
@@ -161,12 +164,14 @@
                     {
                         "field": "Incidents_HIV",
                         "type": "quantitative",
-                        "format": ".2f"
+                        "format": ".2f",
+                        "title": "HIV Incidents"
                     },
                     {
                         "field": "Life_expectancy",
                         "type": "quantitative",
-                        "format": ".1f"
+                        "format": ".1f",
+                        "title": "Life Expectancy"
                     }
                 ]
             }
@@ -216,7 +221,8 @@
                     {
                         "field": "Life_expectancy",
                         "type": "quantitative",
-                        "format": ".1f"
+                        "format": ".1f",
+                        "title": "Life Expectancy"
                     }
                 ]
             }

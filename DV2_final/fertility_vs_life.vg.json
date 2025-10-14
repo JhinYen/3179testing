@@ -79,11 +79,13 @@
             },
             {
                 "field": "TFR",
-                "type": "quantitative"
+                "type": "quantitative",
+                "title": "Total Fertility Rate"
             },
             {
                 "field": "LEx",
-                "type": "quantitative"
+                "type": "quantitative",
+                "title": "Life Expectancy"
             },
             {
                 "field": "Continent",

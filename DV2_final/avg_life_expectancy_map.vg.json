@@ -65,7 +65,7 @@
                     "type": "quantitative",
                     "title": "Average Life Expectancy (years)",
                     "scale": {
-                        "scheme": "blues"
+                        "scheme": "yelloworangebrown"
                     }
                 },
                 "tooltip": [

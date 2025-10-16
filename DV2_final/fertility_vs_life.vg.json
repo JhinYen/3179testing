@@ -66,6 +66,9 @@
             "field": "Continent",
             "type": "nominal",
             "title": "Continent",
+            "scale": {
+                "scheme": "dark2"
+            },
             "legend": {
                 "labelFontSize": 14,
                 "titleFontSize": 16,

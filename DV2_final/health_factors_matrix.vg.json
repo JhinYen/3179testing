@@ -45,6 +45,9 @@
                 },
                 "color": {
                     "field": "Region",
+                    "scale": {
+                        "scheme": "dark2"
+                    },
                     "type": "nominal",
                     "legend": null
                 },

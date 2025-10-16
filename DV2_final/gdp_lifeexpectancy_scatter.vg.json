@@ -65,9 +65,26 @@
                     "type": "quantitative",
                     "title": "Population (millions)",
                     "scale": {
+                        "type": "sqrt",
+                        "domain": [
+                            0,
+                            1500
+                        ],
                         "range": [
+                            20,
+                            1500
+                        ],
+                        "nice": false
+                    },
+                    "legend": {
+                        "title": "Population (millions)",
+                        "symbolLimit": 5,
+                        "values": [
                             100,
-                            600
+                            400,
+                            700,
+                            1000,
+                            1300
                         ]
                     }
                 },
@@ -76,7 +93,7 @@
                     "type": "nominal",
                     "title": "Region",
                     "scale": {
-                        "scheme": "category10"
+                        "scheme": "dark2"
                     },
                     "legend": {
                         "orient": "right"

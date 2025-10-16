@@ -150,7 +150,22 @@
             font-size: 0.95rem;
             color: var(--muted);
             line-height: 1.6;
-            max-width: 700px;
+            max-width: 1100px;
+        }
+
+        .annotation-spaced {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.6;
+            max-width: 1100px;
+        }
+
+        .annotation-spaced ul li {
+            margin-bottom: 30px; /* space between bullet points */
+        }
+
+        .annotation-spaced ul {
+            padding-left: 20px; /* keeps normal bullet indent */
         }
 
         a {
@@ -162,26 +177,20 @@
 <body>
     <div class="wrap">
         <header>
-            <h1>Life & Health: Global Life Expectancy in Focus</h1>
+            <h1>Life & Health: Global Life Expectancy in Focus (2000-2015)</h1>
             <p class="lead">A visual story exploring how health, vaccines, and economic factors shape life expectancy
                 around the world.</p>
-            <div class="meta">Data source: <a
-                    href="https://www.kaggle.com/datasets/lashagoch/life-expectancy-who-updated" target="_blank">Kaggle
-                    - Life Expectancy (WHO)</a> • Years covered: 2000–2015 • Last updated: <em>2015 snapshot focus</em>
-            </div>
         </header>
 
         <!-- Section 1: Global Snapshot -->
         <section class="section">
             <div class="one-col">
                 <div>
-                    <h2 class="viz-title">Global Life Expectancy (2015)</h2>
+                    <h2 class="viz-title">Global Life Expectancy</h2>
                     <div class="viz-card-full" id="choropleth_map" style="min-height:520px"></div>
-                    <p class="caption">A choropleth map showing life expectancy in 2015. Darker colors indicate longer
-                        life expectancy. Hover a country to read its value.</p>
 
                     <div class="section-content">
-                        <h3 style="margin-top:0">At a glance</h3>
+                        <h3 style="margin-top:100">At a glance</h3>
                         <p>Life expectancy correlates with multiple factors including GDP, vaccination coverage, and
                             health indicators such as infant mortality and HIV incidence. Use this map to spot regions
                             with high and low life expectancy.</p>
@@ -196,8 +205,7 @@
             <div class="one-col">
                 <div class="viz-card-full" id="gdp_life_scatter" style="min-height:420px"></div>
             </div>
-            <p class="caption">GDP per capita vs life
-                expectancy (2000 - 2015) — bubble size shows population, while colour shows region. Notice the broad positive association: wealthier
+            <p class="caption">Notice the broad positive association: wealthier
                 countries tend to have higher life expectancy, though there are exceptions.</p>
         </section>
 
@@ -206,7 +214,7 @@
             <h2 class="viz-title">Which health factors matter most?</h2>
             <div class>
                 <div class="viz-card-full" id="health_matrix" style="min-height:200px"></div>
-                <div class="viz-card-full" id="infant_dual" style="min-height:420px"></div>
+                <div class="viz-card-full" id="testing" style="min-height:420px"></div>
             </div>
             <p class="caption">Top: Life expectancy against several health & social indicators — each small panel shows
                 the relationship for a single factor. Bottom: infant deaths vs life expectancy for the 20 most populous
@@ -218,11 +226,27 @@
             <h2 class="viz-title">Vaccination coverage and economic status</h2>
             <div class="viz-row">
                 <div class="viz-card" id="vaccine_bar" style="min-height:420px"></div>
-                <div class="viz-card" id="econ_box" style="min-height:420px"></div>
+                <div class="viz-card annotation">
+                    <ul>
+                        <li><strong>Broad patterns:</strong> Higher GDP, better vaccine coverage, and lower infant
+                            mortality are associated with higher life expectancy.</li>
+                        <li><strong>Regional differences:</strong> Some regions show major improvements (2000→2015),
+                            while others lag due to health crises or limited access to care.</li>
+                    </ul>
+                </div>
             </div>
-            <p class="caption">Left: average economic coverage for Polio, Diphtheria and Hepatitis B (2015). Right:
-                distribution of life expectancy for Developed vs Developing economies — boxplots reveal both median
-                differences and within-group variability.</p>
+
+            <div class="viz-row">
+                <div class="viz-card" id="econ_box" style="min-height:420px"></div>
+                <div class="viz-card annotation-spaced">
+                    <ul>
+                        <li><strong>Broad patterns:</strong> Higher GDP, better vaccine coverage, and lower infant
+                            mortality are associated with higher life expectancy.</li>
+                        <li><strong>Regional differences:</strong> Some regions show major improvements (2000→2015),
+                            while others lag due to health crises or limited access to care.</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
         <!-- Section 5: Population and global trend -->
@@ -237,40 +261,65 @@
             </p>
         </section>
 
-        <!-- Section 6: Change map
+        <!-- Section 6: Migration Effects -->
         <section class="section">
-            <h2 class="viz-title">Where did life expectancy change most?</h2>
-            <div class="viz-card" id="change_map" style="min-height:520px"></div>
-            <p class="caption">A divergence map showing 2015 minus 2000 life expectancy. Blue areas show gains; red
-                shades show relative declines or smaller gains. This helps identify regions that made the most progress
-                and those left behind.</p>
-        </section> -->
+            <h2 class="viz-title">Effects of migration and population</h2>
+            <div class="viz-row">
+                <div class="viz-card-full" id="migration_arc" style="min-height:200px"></div>
 
-        <!-- Section 7: Conclusion & metadata -->
-        <section class="section">
-            <h2 class="viz-title">Key takeaways</h2>
-            <div style="display:grid;gap:12px">
-                <div class="viz-card annotation">
+                <div class="viz-card annotation-spaced">
                     <ul>
                         <li><strong>Broad patterns:</strong> Higher GDP, better vaccine coverage, and lower infant
                             mortality are associated with higher life expectancy.</li>
                         <li><strong>Regional differences:</strong> Some regions show major improvements (2000→2015),
                             while others lag due to health crises or limited access to care.</li>
-                        <li><strong>Population impact:</strong> A few large countries strongly influence the global
-                            averages.</li>
                     </ul>
                 </div>
-                <div class="viz-card">
-                    <h3 style="margin-top:0">Author & Metadata</h3>
-                    <p class="meta">Author: <strong>Low Jhin Yen</strong> • Dataset: WHO life expectancy (Kaggle) •
-                        Visualization toolkit: Vega-Lite • Date: 2015 (focus) • License/status: <a href="https://www.kaggle.com/datasets/lashagoch/life-expectancy-who-updated" target="_blank">Kaggle
-                            - Life Expectancy (WHO)</a></p>
+            </div>
+
+            <div class="viz-row">
+                <div class="viz-card-full" id="pop_treemap" style="min-height:200px"></div>
+            
+                <div class="viz-card annotation-spaced">
+                    <ul>
+                        <li><strong>Broad patterns:</strong> Higher GDP, better vaccine coverage, and lower infant
+                            mortality are associated with higher life expectancy.</li>
+                        <li><strong>Regional differences:</strong> Some regions show major improvements (2000→2015),
+                            while others lag due to health crises or limited access to care.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
+        <!-- Section 7: Key takeaways-->
+        <section class="section">
+            <h2 class="viz-title">Summary key takeaways</h2>
+            <div style="display:grid;gap:12px">
+                <div class="viz-card annotation">
+                    <div class="viz-row">
+                        <ul>
+                            <li><strong>Broad patterns:</strong> Higher GDP, better vaccine coverage, and lower infant
+                                mortality are associated with higher life expectancy.</li>
+
+                            <li><strong>Regional differences:</strong> Some regions show major improvements (2000→2015),
+                                while others lag due to health crises or limited access to care.</li>
+                        </ul>
+                            
+                        <ul>
+                            <li><strong>Population impact:</strong> A few large countries strongly influence the global
+                                averages.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 8: Footer for Source, Date, Author-->
         <footer>
-            <p>Built with Vega-Lite • Hosted on GitHub Pages • Hover charts to explore details</p>
+            <p>Source 1: Life Expectancy WHO (<a href="https://www.kaggle.com/datasets/lashagoch/life-expectancy-who-updated" target="_blank">Kaggle
+                - Life Expectancy by WHO</a>) • Source 2: United Nations World Population Prospects 
+                (<a href="https://population.un.org/wpp/downloads?folder=Standard%20Projections&group=CSV%20format" target="_blank">United Nations - World Population Prospects</a>) 
+                • Date: 15th October 2025 • Author: © Low Jhin Yen</p>
         </footer>
     </div>
 

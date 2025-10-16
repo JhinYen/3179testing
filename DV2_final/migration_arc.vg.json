@@ -1,0 +1,91 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Radial visualization of Net Migrations for 5 selected countries (2015).",
+    "width": 400,
+    "height": 70,
+    "data": {
+        "url": "Demographic_Indicators_2000_2015.csv"
+    },
+    "transform": [
+        {
+            "filter": "datum.Time == 2015"
+        },
+        {
+            "filter": "(datum.LocID == 156 || datum.LocID == 840 || datum.LocID == 356 || datum.LocID == 643 || datum.LocID == 276)"
+        }
+    ],
+    "encoding": {
+        "theta": {
+            "field": "Location",
+            "type": "nominal",
+            "sort": null
+        },
+        "color": {
+            "field": "Location",
+            "type": "nominal",
+            "legend": null
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "arc",
+                "innerRadius": 100,
+                "outerRadius": {
+                    "expr": "100 + (datum.NetMigrations / 12)"
+                },
+                "opacity": 0.85
+            },
+            "encoding": {
+                "tooltip": [
+                    {
+                        "field": "Location",
+                        "title": "Country"
+                    },
+                    {
+                        "field": "TPopulation1July",
+                        "type": "quantitative",
+                        "title": "Population (July 1)",
+                        "format": ",.0f"
+                    },
+                    {
+                        "field": "NetMigrations",
+                        "type": "quantitative",
+                        "title": "Net Migrations",
+                        "format": ",.0f"
+                    }
+                ]
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "radius": {
+                    "expr": "100 + abs(datum.NetMigrations / 12) + 45"
+                },
+                "fontSize": 11,
+                "align": "center",
+                "baseline": "middle"
+            },
+            "encoding": {
+                "text": {
+                    "field": "Location"
+                }
+            }
+        }
+    ],
+    "view": {
+        "stroke": null
+    },
+    "config": {
+        "background": "white",
+        "axis": {
+            "labelFontSize": 11,
+            "titleFontSize": 12
+        },
+        "legend": {
+            "labelFontSize": 11,
+            "titleFontSize": 12
+        }
+    }
+}

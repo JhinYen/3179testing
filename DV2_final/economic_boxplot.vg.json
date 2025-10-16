@@ -5,8 +5,8 @@
         "font": "Poppins",
         "fontSize": 16
     },
-    "width": 300,
-    "height": 420,
+    "width": 470,
+    "height": 340,
     "background": "white",
     "data": {
         "url": "https://raw.githubusercontent.com/JhinYen/3179testing/refs/heads/main/DV2/Life-Expectancy-Data-Updated-with-ISO.csv",

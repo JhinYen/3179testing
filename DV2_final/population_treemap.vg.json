@@ -1,0 +1,117 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Treemap showing population size and life expectancy for top 10 countries in 2015.",
+    "width": 340,
+    "height": 200,
+    "data": {
+        "url": "Demographic_Indicators_2000_2015.csv"
+    },
+    "transform": [
+        {
+            "filter": "datum.Time == 2015"
+        },
+        {
+            "filter": "datum.LocTypeID == 4"
+        },
+        {
+            "filter": "isValid(datum.TPopulation1July) && isValid(datum.LEx)"
+        },
+        {
+            "aggregate": [
+                {
+                    "op": "sum",
+                    "field": "TPopulation1July",
+                    "as": "Population"
+                },
+                {
+                    "op": "mean",
+                    "field": "LEx",
+                    "as": "LifeExpectancy"
+                },
+                {
+                    "op": "max",
+                    "field": "Location",
+                    "as": "CountryName"
+                }
+            ],
+            "groupby": [
+                "LocID"
+            ]
+        },
+        {
+            "window": [
+                {
+                    "op": "rank",
+                    "as": "rank"
+                }
+            ],
+            "sort": [
+                {
+                    "field": "Population",
+                    "order": "descending"
+                }
+            ]
+        },
+        {
+            "filter": "datum.rank <= 10"
+        }
+    ],
+    "mark": {
+        "type": "rect"
+    },
+    "encoding": {
+        "x": {
+            "aggregate": "sum",
+            "field": "Population",
+            "stack": "normalize",
+            "axis": null
+        },
+        "y": {
+            "aggregate": "sum",
+            "field": "Population",
+            "stack": "normalize",
+            "axis": null
+        },
+        "color": {
+            "field": "LifeExpectancy",
+            "type": "quantitative",
+            "scale": {
+                "scheme": "blues"
+            },
+            "legend": {
+                "title": "Life Expectancy (years)"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "CountryName",
+                "type": "nominal",
+                "title": "Country"
+            },
+            {
+                "field": "LocID",
+                "type": "nominal",
+                "title": "LocID"
+            },
+            {
+                "field": "Population",
+                "type": "quantitative",
+                "title": "Population (thousands)"
+            },
+            {
+                "field": "LifeExpectancy",
+                "type": "quantitative",
+                "title": "Life Expectancy"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": null
+        },
+        "mark": {
+            "stroke": "white",
+            "strokeWidth": 1
+        }
+    }
+}

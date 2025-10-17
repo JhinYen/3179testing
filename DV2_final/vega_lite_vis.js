@@ -9,4 +9,4 @@ vegaEmbed("#migration_arc", "migration_arc.vg.json");
 vegaEmbed("#pop_treemap", "population_treemap.vg.json");
 
 
-vegaEmbed("#testing", "testing.vg.json");
+// vegaEmbed("#testing", "testing.vg.json");

@@ -1,8 +1,12 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Net Migrations by Top 5 Countries (2015)",
+        "offset": 40
+    },
     "description": "Radial visualization of Net Migrations for 5 selected countries (2015).",
     "width": 400,
-    "height": 70,
+    "height": 300,
     "data": {
         "url": "Demographic_Indicators_2000_2015.csv"
     },
@@ -23,7 +27,10 @@
         "color": {
             "field": "Location",
             "type": "nominal",
-            "legend": null
+            "legend": null,
+            "scale": {
+                "scheme": "dark2"
+            }
         }
     },
     "layer": [

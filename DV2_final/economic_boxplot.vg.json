@@ -6,7 +6,7 @@
         "fontSize": 16
     },
     "width": 470,
-    "height": 340,
+    "height": 280,
     "background": "white",
     "data": {
         "url": "https://raw.githubusercontent.com/JhinYen/3179testing/refs/heads/main/DV2/Life-Expectancy-Data-Updated-with-ISO.csv",
@@ -117,7 +117,13 @@
                         "type": "nominal"
                     },
                     {
+                        "field": "Economy_status",
+                        "type": "nominal",
+                        "title": "Economic Status"
+                    },
+                    {
                         "field": "Life_expectancy",
+                        "title": "Life Expectancy",
                         "type": "quantitative",
                         "format": ".1f"
                     }

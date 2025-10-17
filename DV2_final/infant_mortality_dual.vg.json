@@ -33,29 +33,6 @@
         },
         {
             "filter": "datum.pop_rank <= 20"
-        },
-        {
-            "joinaggregate": [
-                {
-                    "op": "min",
-                    "field": "Life_expectancy",
-                    "as": "minLE"
-                },
-                {
-                    "op": "max",
-                    "field": "Life_expectancy",
-                    "as": "maxLE"
-                },
-                {
-                    "op": "max",
-                    "field": "Infant_deaths",
-                    "as": "maxInf"
-                }
-            ]
-        },
-        {
-            "calculate": "(datum.Life_expectancy - datum.minLE) / (datum.maxLE - datum.minLE) * datum.maxInf",
-            "as": "Life_expectancy_scaled"
         }
     ],
     "layer": [
@@ -95,7 +72,7 @@
                     {
                         "field": "Life_expectancy",
                         "type": "quantitative",
-                        "title": "Life expectancy (yrs)",
+                        "title": "Life expectancy (years)",
                         "format": ".1f"
                     }
                 ]
@@ -114,9 +91,21 @@
                     "sort": "-y"
                 },
                 "y": {
-                    "field": "Life_expectancy_scaled",
+                    "field": "Life_expectancy",
                     "type": "quantitative",
-                    "axis": null
+                    "title": "Life Expectancy (years)",
+                    "scale": {
+                        "domain": [
+                            55,
+                            90
+                        ]
+                    },
+                    "axis": {
+                        "orient": "right",
+                        "titleColor": "#2b8cbe",
+                        "labelColor": "#7a7a7a",
+                        "grid": false
+                    }
                 },
                 "color": {
                     "value": "#2b8cbe"
@@ -130,7 +119,7 @@
                         "field": "Life_expectancy",
                         "type": "quantitative",
                         "format": ".1f",
-                        "title": "Life expectancy (yrs)"
+                        "title": "Life expectancy (years)"
                     }
                 ]
             }
@@ -138,7 +127,15 @@
     ],
     "resolve": {
         "scale": {
-            "y": "shared"
+            "y": "independent"
+        }
+    },
+    "config": {
+        "axis": {
+            "domainColor": "#ccc",
+            "gridColor": "#e5e5e5",
+            "labelColor": "#7a7a7a",
+            "titleColor": "#555"
         }
     }
 }

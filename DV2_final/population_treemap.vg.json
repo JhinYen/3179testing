@@ -1,8 +1,14 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Life Expectancy of Top 3 Populous Countries",
+        "offset": 20,
+        "anchor": "start",
+        "dx": 110
+    },
     "description": "Treemap showing population size and life expectancy for top 10 countries in 2015.",
     "width": 320,
-    "height": 200,
+    "height": 280,
     "data": {
         "url": "Demographic_Indicators_2000_2015.csv"
     },
@@ -89,14 +95,10 @@
                 "title": "Country"
             },
             {
-                "field": "LocID",
-                "type": "nominal",
-                "title": "LocID"
-            },
-            {
                 "field": "Population",
                 "type": "quantitative",
-                "title": "Population (thousands)"
+                "title": "Population (thousands)",
+                "format": ",.0f"
             },
             {
                 "field": "LifeExpectancy",

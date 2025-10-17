@@ -175,6 +175,10 @@
             margin-bottom: 30px; /* space between bullet points */
         }
 
+        .annotation-spaced ol li {
+            margin-bottom: 30px; /* space between numbered points */
+        }
+
         .annotation-spaced ul {
             padding-left: 20px; /* keeps normal bullet indent */
         }
@@ -206,13 +210,14 @@
                     <div class="viz-row">
                         
                         <ul>
-                            <p class="caption">Life expectancy correlates with multiple factors including GDP, vaccination coverage, and
-                            health indicators such as infant mortality and HIV incidence.</p>
+                            <p class="caption">From breakthroughs in multiple factors including GDP, vaccination coverage, and
+                            health indicators such as infant mortality and HIV incidence, to rising healthcare investments, improvements in life expectancy tell a story of
+                            global progress—and persistent inequality.</p>
                         </ul>
                 
                         <ul>
-                            <p class="caption">Use this map to spot regions
-                            with high and low life expectancy.</p>
+                            <p class="caption"> Through data-driven visuals, this exploration highlights how health systems,
+                            wealth, and social development intertwine to influence how long and how well people live across the world.</p>
                         </ul>
                     </div>
                 </div>
@@ -248,7 +253,7 @@
             <h2 class="viz-title">Which health factors matter most?</h2>
             <div class>
                 <div class="viz-card-full" id="health_matrix" style="min-height:200px"></div>
-                <div class="viz-card-full" id="testing" style="min-height:420px"></div>
+                <div class="viz-card-full" id="infant_dual" style="min-height:420px"></div>
             </div>
         </section>
 
@@ -259,22 +264,24 @@
                 <div class="viz-card" id="vaccine_bar" style="min-height:420px"></div>
                 <div class="viz-card annotation-spaced">
                     <ul>
-                        <li><strong>Broad patterns:</strong> Higher GDP, better vaccine coverage, and lower infant
-                            mortality are associated with higher life expectancy.</li>
-                        <li><strong>Regional differences:</strong> Some regions show major improvements (2000→2015),
-                            while others lag due to health crises or limited access to care.</li>
+                        <li><strong>Coverage Levels:</strong> Developed countries maintain above 90% coverage for all three vaccines, while developing countries typically range
+                        between 75–85%, reflecting gaps in healthcare access and resources.</li>
+                        <li><strong>Infrastructure and Access:</strong> Well-organized immunization programs in developed nations ensure consistent delivery,
+                        whereas developing regions often struggle with limited facilities, supply shortages, and rural inaccessibility.</li>
+                        <li><strong>Progress and Challenges:</strong> Global initiatives have improved vaccination rates in developing countries, yet conflict, poverty, and misinformation
+                        continue to hinder full coverage, keeping the gap between regions significant.</li>
                     </ul>
                 </div>
             </div>
 
             <div class="viz-row">
-                <div class="viz-card" id="econ_box" style="min-height:420px"></div>
+                <div class="viz-card" id="econ_box" style="min-height:100px"></div>
                 <div class="viz-card annotation-spaced">
                     <ul>
-                        <li><strong>Broad patterns:</strong> Higher GDP, better vaccine coverage, and lower infant
-                            mortality are associated with higher life expectancy.</li>
-                        <li><strong>Regional differences:</strong> Some regions show major improvements (2000→2015),
-                            while others lag due to health crises or limited access to care.</li>
+                        <li><strong>Progress and Inequality:</strong> Although life expectancy in developing regions has risen significantly over recent decades due to global aid and
+                        improved vaccination, economic inequality continues to drive a persistent gap between rich and poor nations.</li>
+                        <li><strong>Healthcare Quality:</strong> Stronger economies support universal healthcare systems, advanced medical technology, and better disease prevention,
+                        contributing to longer lifespans, whereas developing nations face resource constraints and limited medical access.</li>
                     </ul>
                 </div>
             </div>
@@ -285,7 +292,6 @@
             <h2 class="viz-title">Fertility vs Life Expectancy: The Development Divide</h2>
             <div class="one-col">
                 <div class="viz-card-full" id="fertility_life_scatter" style="min-height:520px"></div>
-                <!-- <div class="viz-card" id="global_trend" style="min-height:360px"></div> -->
             </div>
             
             <div class="viz-card annotation">
@@ -305,16 +311,20 @@
 
         <!-- Section 6: Migration Effects -->
         <section class="section">
-            <h2 class="viz-title">Effects of migration and population</h2>
+            <h2 class="viz-title">Effects of migration and population on life expectancy</h2>
             <div class="viz-row">
-                <div class="viz-card-full" id="migration_arc" style="min-height:200px"></div>
+                <div class="viz-card-full" id="migration_arc" style="min-height:500px"></div>
 
                 <div class="viz-card annotation-spaced">
                     <ul>
-                        <li><strong>Broad patterns:</strong> Higher GDP, better vaccine coverage, and lower infant
-                            mortality are associated with higher life expectancy.</li>
-                        <li><strong>Regional differences:</strong> Some regions show major improvements (2000→2015),
-                            while others lag due to health crises or limited access to care.</li>
+                        <li><strong>Positive Net Migration:</strong> Countries like the United States and Germany attract large numbers of migrants, often young and working-age individuals,
+                        which helps balance aging populations and sustain higher life expectancy through stronger economies and healthcare
+                        systems.</li>
+                        <li><strong>Negative Net Migration:</strong> Nations such as China and India experience more people leaving than entering, often resulting in a loss of skilled
+                        workers (“brain drain”) that can limit healthcare capacity and slow improvements in national life expectancy.</li>
+                        <li><strong>Demographic Impacts:</strong> While high-immigration countries benefit from population diversity and workforce renewal, countries with net emigration
+                        may face uneven regional development and aging rural populations, both of which can negatively influence overall life
+                        expectancy trends.</li>
                     </ul>
                 </div>
             </div>
@@ -324,10 +334,11 @@
             
                 <div class="viz-card annotation-spaced">
                     <ul>
-                        <li><strong>Broad patterns:</strong> Higher GDP, better vaccine coverage, and lower infant
-                            mortality are associated with higher life expectancy.</li>
-                        <li><strong>Regional differences:</strong> Some regions show major improvements (2000→2015),
-                            while others lag due to health crises or limited access to care.</li>
+                        <li><strong>Economic Scale and Investment:</strong> Large economies like the U.S. and China can allocate significant resources to public health, disease prevention, and
+                        research, which helps improve life expectancy — though income inequality can still create wide gaps across regions and
+                        groups.</li>
+                        <li><strong>Population Density and Environment:</strong> High population density, particularly in India and parts of China, leads to pollution, overcrowding, and sanitation
+                        issues, which can negatively impact public health and reduce life expectancy despite economic progress.</li>
                     </ul>
                 </div>
             </div>
@@ -339,18 +350,26 @@
             <div style="display:grid;gap:12px">
                 <div class="viz-card annotation-spaced">
                     <div class="viz-row">
-                        <ul>
-                            <li><strong>Broad patterns:</strong> Higher GDP, better vaccine coverage, and lower infant
-                                mortality are associated with higher life expectancy.</li>
+                        <ol>
+                            <li><strong>Economic Strength and Health Investment:</strong> Countries with higher GDP and stronger economic status can
+                                invest more in healthcare, education, and infrastructure, directly contributing to longer life expectancy through
+                                better living standards and disease prevention.</li>
 
-                            <li><strong>Regional differences:</strong> Some regions show major improvements (2000→2015),
-                                while others lag due to health crises or limited access to care.</li>
-                        </ul>
+                            <li><strong>Vaccination Coverage and Disease Control:</strong> High vaccination rates against diseases like Diphtheria,
+                                Hepatitis B, and Polio significantly reduce child mortality and prevent outbreaks, forming a cornerstone for higher
+                                average life expectancy, especially in developing regions.</li>
+                        </ol>
                             
-                        <ul>
-                            <li><strong>Population impact:</strong> A few large countries strongly influence the global
-                                averages.</li>
-                        </ul>
+                        <ol start="3">
+                            <li><strong>Fertility Rate and Demographic Balance:</strong> Lower fertility rates in developed nations often correlate
+                                with aging but healthier populations, while high fertility rates in developing countries can strain healthcare
+                                systems and lower life expectancy due to limited resources per capita.</li>
+
+                            <li><strong>Migration and Population Dynamics:</strong> Positive net migration (as seen in the U.S. and Germany)
+                                introduces younger, healthier populations that support workforce and healthcare sustainability, whereas negative net
+                                migration (in countries like India and China) can limit skilled labor retention and slow improvements in life
+                                expectancy.</li>
+                        </ol>
                     </div>
                 </div>
             </div>
@@ -368,9 +387,9 @@
             </p>
 
             <p>
-                
-            </p>
                 <strong>Date:</strong> 15th October 2025
+            </p>
+                
             <p>
                 <strong>Author:</strong> © Low Jhin Yen
             </p>
